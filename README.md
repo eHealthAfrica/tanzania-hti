@@ -14,5 +14,6 @@ To accomplish this, we'll use:
 
 The main drivers of the workflow are the Stream Consumer and RapidPro, related as described in the following diagram:
 
+![Diagram](/doc/Selection_001.jpg)
 
 Artifacts for all of the consumers and RapidPro can be found in the appropriate folders.
