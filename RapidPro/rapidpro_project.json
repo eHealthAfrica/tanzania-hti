@@ -1,0 +1,542 @@
+{
+  "version": "13",
+  "site": "https://textit.in",
+  "flows": [
+    {
+      "name": "MissedAppointmentTrigger",
+      "uuid": "4b37c05d-3d6d-4121-bbba-578c77ca94ae",
+      "spec_version": "13.1.0",
+      "language": "base",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "faf9c71c-1efe-4ff2-884d-25ed5f77d512",
+          "actions": [
+            {
+              "legacy_vars": [],
+              "contacts": [],
+              "groups": [],
+              "create_contact": false,
+              "flow": {
+                "name": "MissedAppointmentMsgHCW",
+                "uuid": "daf4325b-e80e-4a53-a3a9-8f1e052090f6"
+              },
+              "type": "start_session",
+              "uuid": "bcc4cf80-9f7d-47da-ab43-cd48187523d9",
+              "contact_query": "@contact.fields.hcwid = @fields.contactid"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "899ea56b-fcf3-4214-a418-6fc9110931f9",
+              "destination_uuid": "47b523e1-4e12-41d3-8b83-a945b00851cd"
+            }
+          ]
+        },
+        {
+          "uuid": "47b523e1-4e12-41d3-8b83-a945b00851cd",
+          "actions": [
+            {
+              "type": "remove_contact_groups",
+              "groups": [
+                {
+                  "uuid": "9d8c0bd3-e0f5-4e37-a6f4-7b01bc0ba0f5",
+                  "name": "HIVRuralReminderPatients"
+                }
+              ],
+              "all_groups": false,
+              "uuid": "ed6d11ee-d085-4d21-a24d-f6518c66637a"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "a0c921c4-5cf4-46bf-b5fc-f494f64e21c1",
+              "destination_uuid": null
+            }
+          ]
+        }
+      ],
+      "_ui": {
+        "nodes": {
+          "faf9c71c-1efe-4ff2-884d-25ed5f77d512": {
+            "position": {
+              "left": 0,
+              "top": 0
+            },
+            "type": "execute_actions"
+          },
+          "47b523e1-4e12-41d3-8b83-a945b00851cd": {
+            "position": {
+              "left": 80,
+              "top": 300
+            },
+            "type": "execute_actions"
+          }
+        }
+      },
+      "revision": 4,
+      "expire_after_minutes": 10080,
+      "metadata": {
+        "expires": 10080
+      },
+      "localization": {}
+    },
+    {
+      "name": "AppointmentReminder",
+      "uuid": "602b7906-7cc0-4071-b992-8edc469a8bf8",
+      "spec_version": "13.1.0",
+      "language": "base",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "681105c8-2a58-4d1a-abc6-70878c2d9a7c",
+          "actions": [
+            {
+              "attachments": [],
+              "text": "Hello, this is a reminder that you have an appointment on @contact.fields.appointment, which is tomorrow.",
+              "type": "send_msg",
+              "quick_replies": [],
+              "uuid": "79bd2085-19d0-46c5-9860-a78a0cacbf4c"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "34299597-cc5e-4b10-9102-7e3fdbc481a6",
+              "destination_uuid": null
+            }
+          ]
+        }
+      ],
+      "_ui": {
+        "nodes": {
+          "681105c8-2a58-4d1a-abc6-70878c2d9a7c": {
+            "position": {
+              "left": 260,
+              "top": 40
+            },
+            "type": "execute_actions"
+          }
+        }
+      },
+      "revision": 4,
+      "expire_after_minutes": 10080,
+      "metadata": {
+        "expires": 10080
+      },
+      "localization": {}
+    },
+    {
+      "name": "EnrollFollowUp",
+      "uuid": "1aa47fe5-32c3-4125-b70c-a02c2f189712",
+      "spec_version": "13.1.0",
+      "language": "base",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "e4970893-69be-4448-bab8-1efd86f4b48f",
+          "actions": [
+            {
+              "uuid": "59bdc76a-8f6b-49fb-add6-b631d6b3c434",
+              "type": "set_contact_field",
+              "field": {
+                "name": "hcwid",
+                "key": "hcwid"
+              },
+              "value": "@trigger.params.hcwid"
+            },
+            {
+              "uuid": "75d8ac03-31b3-4298-b9df-8a47636a7af8",
+              "type": "set_contact_field",
+              "field": {
+                "name": "appointment",
+                "key": "appointment"
+              },
+              "value": "@trigger.params.appointment"
+            },
+            {
+              "uuid": "d5f6980c-fff1-46a2-8ae9-d965554faac6",
+              "type": "set_contact_field",
+              "field": {
+                "name": "sampleid",
+                "key": "sampleid"
+              },
+              "value": "@trigger.params.sampleid"
+            },
+            {
+              "uuid": "131d5492-1ac6-40f7-b1d0-d6d1a61e1418",
+              "type": "set_contact_field",
+              "field": {
+                "name": "patientid",
+                "key": "patientid"
+              },
+              "value": "@trigger.params.patientid"
+            },
+            {
+              "uuid": "33bcfbab-e2ca-40ea-8a56-3f7df9a1714c",
+              "type": "set_contact_field",
+              "field": {
+                "name": "contactid",
+                "key": "contactid"
+              },
+              "value": "@trigger.params.patientid"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "5ab6a5ac-6ddc-4071-a055-c9f8a24c5e85",
+              "destination_uuid": "71b41b6e-32c5-410d-ac53-11667a813ac4"
+            }
+          ]
+        },
+        {
+          "uuid": "71b41b6e-32c5-410d-ac53-11667a813ac4",
+          "actions": [
+            {
+              "type": "add_contact_groups",
+              "groups": [
+                {
+                  "uuid": "9d8c0bd3-e0f5-4e37-a6f4-7b01bc0ba0f5",
+                  "name": "HIVRuralReminderPatients",
+                  "query": null,
+                  "status": "ready",
+                  "count": 0
+                }
+              ],
+              "uuid": "56f6a8f2-e4e0-4ed7-8245-4a0eba0a2401"
+            },
+            {
+              "attachments": [],
+              "text": "@trigger.params.msg",
+              "type": "send_msg",
+              "quick_replies": [],
+              "uuid": "56b3074f-b8d7-4d8f-9631-ebd95c2bb8b6"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "bf5fbe44-87ab-43cc-bc70-40abb85f733d",
+              "destination_uuid": null
+            }
+          ]
+        }
+      ],
+      "_ui": {
+        "nodes": {
+          "e4970893-69be-4448-bab8-1efd86f4b48f": {
+            "position": {
+              "left": 200,
+              "top": 60
+            },
+            "type": "execute_actions"
+          },
+          "71b41b6e-32c5-410d-ac53-11667a813ac4": {
+            "position": {
+              "left": 200,
+              "top": 420
+            },
+            "type": "execute_actions"
+          }
+        }
+      },
+      "revision": 31,
+      "expire_after_minutes": 10080,
+      "metadata": {
+        "expires": 10080
+      },
+      "localization": {}
+    },
+    {
+      "name": "MissedAppointmentMsgHCW",
+      "uuid": "daf4325b-e80e-4a53-a3a9-8f1e052090f6",
+      "spec_version": "13.1.0",
+      "language": "base",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "5605f72e-8345-419d-842a-f40498958ab0",
+          "actions": [
+            {
+              "attachments": [],
+              "text": "@parent.contact.fields.patientid with sample @parent.contact.fields.sampleid missed their appointment on @parent.contact.fields.appointment.",
+              "type": "send_msg",
+              "quick_replies": [],
+              "uuid": "b857eee1-4f1c-489d-b08b-165d727ebd51"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "82c92f9b-43db-4991-beca-29ff860a8783",
+              "destination_uuid": null
+            }
+          ]
+        }
+      ],
+      "_ui": {
+        "nodes": {
+          "5605f72e-8345-419d-842a-f40498958ab0": {
+            "position": {
+              "left": 0,
+              "top": 0
+            },
+            "type": "execute_actions"
+          }
+        }
+      },
+      "revision": 2,
+      "expire_after_minutes": 10080,
+      "metadata": {
+        "expires": 10080
+      },
+      "localization": {}
+    },
+    {
+      "name": "RemoveFollowUp",
+      "uuid": "1d0cad75-42c5-4da7-91bd-1327095b73dc",
+      "spec_version": "13.1.0",
+      "language": "base",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "2ee7b625-d528-4a63-b366-a32218ee0b0c",
+          "actions": [
+            {
+              "type": "remove_contact_groups",
+              "groups": [
+                {
+                  "uuid": "9d8c0bd3-e0f5-4e37-a6f4-7b01bc0ba0f5",
+                  "name": "HIVRuralReminderPatients"
+                }
+              ],
+              "all_groups": false,
+              "uuid": "eee111f4-ab52-416d-8b80-e0e53ed69ac9"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "245ab1fc-2ceb-4c61-acc8-b94c0426ab58",
+              "destination_uuid": null
+            }
+          ]
+        }
+      ],
+      "_ui": {
+        "nodes": {
+          "2ee7b625-d528-4a63-b366-a32218ee0b0c": {
+            "position": {
+              "left": 0,
+              "top": 0
+            },
+            "type": "execute_actions"
+          }
+        }
+      },
+      "revision": 2,
+      "expire_after_minutes": 10080,
+      "metadata": {
+        "expires": 10080
+      },
+      "localization": {}
+    },
+    {
+      "name": "Contact",
+      "uuid": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91",
+      "spec_version": "13.1.0",
+      "language": "base",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "a4af2b9b-5eed-4d42-a048-71293e1d200f",
+          "actions": [
+            {
+              "attachments": [],
+              "text": "@trigger.params.msg",
+              "type": "send_msg",
+              "quick_replies": [],
+              "uuid": "a47b4e25-d234-49cb-9c92-78287a00feb0"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "4e8a6f80-fc95-4031-8ba4-71dc7ace5778",
+              "destination_uuid": "3a4ab856-bbe7-430f-bc6a-f33e02f3bb4e"
+            }
+          ]
+        },
+        {
+          "uuid": "3a4ab856-bbe7-430f-bc6a-f33e02f3bb4e",
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "default_category_uuid": "89623f3d-1d68-436f-8e7e-f7568bbf2f9d",
+            "categories": [
+              {
+                "uuid": "a3160f8c-fda6-4a3b-b08e-f50d795027c7",
+                "name": "Has ContactID",
+                "exit_uuid": "091d3187-1548-44d9-817c-1a11a1c102f5"
+              },
+              {
+                "uuid": "89623f3d-1d68-436f-8e7e-f7568bbf2f9d",
+                "name": "Other",
+                "exit_uuid": "0cb50a29-3ccb-4d70-be74-612fa73542ea"
+              }
+            ],
+            "cases": [
+              {
+                "arguments": [],
+                "type": "has_text",
+                "uuid": "cba3ed7b-1cf0-42e5-a68f-9a1cb95a5208",
+                "category_uuid": "a3160f8c-fda6-4a3b-b08e-f50d795027c7"
+              }
+            ],
+            "operand": "@trigger.params.contactid"
+          },
+          "exits": [
+            {
+              "uuid": "091d3187-1548-44d9-817c-1a11a1c102f5",
+              "destination_uuid": "cbe8b45a-0e61-48ea-8b42-36e35a2edf2f"
+            },
+            {
+              "uuid": "0cb50a29-3ccb-4d70-be74-612fa73542ea",
+              "destination_uuid": null
+            }
+          ]
+        },
+        {
+          "uuid": "cbe8b45a-0e61-48ea-8b42-36e35a2edf2f",
+          "actions": [
+            {
+              "uuid": "bef50a1e-29c9-4b3b-8b51-087334cb0cad",
+              "type": "set_contact_field",
+              "field": {
+                "name": "contactid",
+                "key": "contactid"
+              },
+              "value": "@trigger.params.contactid"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "2e1a1d93-1ce1-40dc-bb74-b8932357bda6",
+              "destination_uuid": null
+            }
+          ]
+        }
+      ],
+      "_ui": {
+        "nodes": {
+          "a4af2b9b-5eed-4d42-a048-71293e1d200f": {
+            "position": {
+              "left": 120,
+              "top": 120
+            },
+            "type": "execute_actions"
+          },
+          "3a4ab856-bbe7-430f-bc6a-f33e02f3bb4e": {
+            "type": "split_by_expression",
+            "position": {
+              "left": 120,
+              "top": 320
+            },
+            "config": {
+              "cases": {}
+            }
+          },
+          "cbe8b45a-0e61-48ea-8b42-36e35a2edf2f": {
+            "position": {
+              "left": 80,
+              "top": 500
+            },
+            "type": "execute_actions"
+          }
+        }
+      },
+      "revision": 19,
+      "expire_after_minutes": 10080,
+      "metadata": {
+        "expires": 10080
+      },
+      "localization": {}
+    }
+  ],
+  "campaigns": [
+    {
+      "uuid": "c6249404-4fbf-4a3e-a9e2-211135e1fc80",
+      "name": "FollowUp",
+      "group": {
+        "uuid": "9d8c0bd3-e0f5-4e37-a6f4-7b01bc0ba0f5",
+        "name": "HIVRuralReminderPatients"
+      },
+      "events": [
+        {
+          "uuid": "8a72e566-9d1c-4106-94dd-9ee10b74732d",
+          "offset": 1,
+          "unit": "D",
+          "event_type": "F",
+          "delivery_hour": 8,
+          "message": null,
+          "relative_to": {
+            "label": "appointment",
+            "key": "appointment"
+          },
+          "start_mode": "I",
+          "flow": {
+            "uuid": "4b37c05d-3d6d-4121-bbba-578c77ca94ae",
+            "name": "MissedAppointmentTrigger"
+          }
+        },
+        {
+          "uuid": "a01846da-8264-406b-9754-9d988e2b620d",
+          "offset": -1,
+          "unit": "D",
+          "event_type": "F",
+          "delivery_hour": 8,
+          "message": null,
+          "relative_to": {
+            "label": "appointment",
+            "key": "appointment"
+          },
+          "start_mode": "I",
+          "flow": {
+            "uuid": "602b7906-7cc0-4071-b992-8edc469a8bf8",
+            "name": "AppointmentReminder"
+          }
+        }
+      ]
+    }
+  ],
+  "triggers": [],
+  "fields": [
+    {
+      "key": "appointment",
+      "name": "appointment",
+      "type": "datetime"
+    },
+    {
+      "key": "contactid",
+      "name": "contactid",
+      "type": "text"
+    },
+    {
+      "key": "hcwid",
+      "name": "hcwid",
+      "type": "text"
+    },
+    {
+      "key": "patientid",
+      "name": "patientid",
+      "type": "text"
+    },
+    {
+      "key": "sampleid",
+      "name": "sampleid",
+      "type": "text"
+    }
+  ],
+  "groups": [
+    {
+      "uuid": "9d8c0bd3-e0f5-4e37-a6f4-7b01bc0ba0f5",
+      "name": "HIVRuralReminderPatients",
+      "query": null
+    }
+  ]
+}
