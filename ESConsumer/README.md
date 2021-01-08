@@ -34,6 +34,163 @@ Forms:
 }
 ```
 
+```json
+{
+  "es_options": {
+    "alias_name": "HIVRural_Form_A",
+    "auto_timestamp": "aet_auto_ts",
+    "index_time": "end",
+    "geo_point_creation": false,
+    "geo_point_name": "geopoint"
+  },
+  "id": "hiv_rural_a",
+  "kibana_options": {
+    "auto_vizualization": "None"
+  },
+  "name": "Rural A",
+  "topic_options": {
+    "filter_required": false,
+    "masking_annotation": "@aether_masking",
+    "masking_emit_level": "public",
+    "masking_levels": [
+      "public",
+      "private"
+    ]
+  },
+  "topic_pattern": "HIV_rural_A_*",
+  "visualizations": []
+}
+```
+
+```json
+{
+  "es_options": {
+    "alias_name": "HIVRural_Form_B",
+    "auto_timestamp": "aet_auto_ts",
+    "index_time": "end",
+    "geo_point_creation": false,
+    "geo_point_name": "geopoint"
+  },
+  "id": "hiv_rural_b",
+  "kibana_options": {
+    "auto_vizualization": "None"
+  },
+  "name": "Rural B",
+  "topic_options": {
+    "filter_required": false,
+    "masking_annotation": "@aether_masking",
+    "masking_emit_level": "public",
+    "masking_levels": [
+      "public",
+      "private"
+    ]
+  },
+  "topic_pattern": "HIV_rural_B_*",
+  "visualizations": []
+}
+```
+
+
+```json
+{
+  "es_options": {
+    "alias_name": "HIVRural_Form_1",
+    "auto_timestamp": "aet_auto_ts",
+    "index_time": "end",
+    "geo_point_creation": false,
+    "geo_point_name": "geopoint"
+  },
+  "id": "hiv_rural_1",
+  "kibana_options": {
+    "auto_vizualization": "None"
+  },
+  "name": "Rural 1",
+  "topic_options": {
+    "filter_required": false,
+    "masking_annotation": "@aether_masking",
+    "masking_emit_level": "public",
+    "masking_levels": [
+      "public",
+      "private"
+    ]
+  },
+  "topic_pattern": "HIV_rural_1_*",
+  "visualizations": []
+}
+```
+
+```json
+{
+  "es_options": {
+    "alias_name": "HIVRural_Form_3",
+    "auto_timestamp": "aet_auto_ts",
+    "index_time": "end",
+    "geo_point_creation": false,
+    "geo_point_name": "geopoint"
+  },
+  "id": "hiv_rural_3",
+  "kibana_options": {
+    "auto_vizualization": "None"
+  },
+  "name": "Rural 3",
+  "topic_options": {
+    "filter_required": false,
+    "masking_annotation": "@aether_masking",
+    "masking_emit_level": "public",
+    "masking_levels": [
+      "public",
+      "private"
+    ]
+  },
+  "topic_pattern": "HIV_rural_3_*",
+  "visualizations": []
+}
+```
+
+```json
+{
+  "es_options": {
+    "alias_name": "HIVRural_Form_5",
+    "auto_timestamp": "aet_auto_ts",
+    "index_time": "end",
+    "geo_point_creation": false,
+    "geo_point_name": "geopoint"
+  },
+  "id": "hiv_rural_5",
+  "kibana_options": {
+    "auto_vizualization": "None"
+  },
+  "name": "Rural 5",
+  "topic_options": {
+    "filter_required": false,
+    "masking_annotation": "@aether_masking",
+    "masking_emit_level": "public",
+    "masking_levels": [
+      "public",
+      "private"
+    ]
+  },
+  "topic_pattern": "HIVrural_5_*",
+  "visualizations": []
+}
+```
+
+```json
+{
+    "id": "hiv_rural_form_combined_v0",
+    "local_elasticsearch": "default",
+    "local_kibana": "default",
+    "name": "HIV Rural Forms",
+    "subscription":[
+        "hiv_rural_a",
+        "hiv_rural_b",
+        "hiv_rural_1",
+        "hiv_rural_3",
+        "hiv_rural_5"
+    ]
+}
+```
+<!-- 
 Logs:
 ```json
 {
@@ -76,3 +233,4 @@ Jobs:
     ]
 }
 ```
+ -->
