@@ -114,6 +114,152 @@ Rapid pro requires a specific format for phone numbers and it's better to change
 
 ## Pipelines
 
+#### Register Healthcare Worker (Rural A)
+
+```json
+{
+  "id": "rural_a",
+  "name": "Rural A / Healthworker Registration",
+  "error_handling": {
+    "error_topic": "log_hiv_rural_A",
+    "log_failure": true,
+    "log_success": true
+  },
+  "kafka_subscription": {
+    "topic_pattern": "HIV_rural_A_Registration_HCW*",
+    "topic_options": {
+      "masking_annotation": "@aether_masking",
+      "masking_levels": [
+        "public",
+        "private"
+      ],
+      "masking_emit_level": "public",
+      "filter_required": false
+    }
+  },
+  "const": {
+    "rapidpro_flow": "https://api.textit.in/api/v2/flow_starts.json",
+    "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
+    "rapidpro_flow_id__contact": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91",
+    "sms_msg": "You have been registered as a Healthworker, to be contacted on this number."
+  },
+  "stages": [
+    {
+      "name": "urn",
+      "type": "jscall",
+      "id": "urn",
+      "transition": {
+        "input_map": {
+          "base": "$.source.message.contact_number"
+        },
+        "output_map": {
+          "result": "$.result"
+        }
+      }
+    },
+    {
+      "name": "rapidpro",
+      "type": "restcall",
+      "id": "default",
+      "transition": {
+        "input_map": {
+          "url": "$.const.rapidpro_flow",
+          "method": "POST",
+          "headers": {
+            "Authorization": "$.const.rapidpro_auth_header"
+          },
+          "json_body": {
+            "flow": "$.const.rapidpro_flow_id__contact",
+            "extra": {
+              "msg": "$.const.sms_msg",
+              "contactid": "$.source.message.hcw_id"
+            },
+            "urns": "$.urn.result"
+          }
+        },
+        "output_map": {
+          "status_code": "$.status_code",
+          "all": "$.reason"
+        }
+      }
+    }
+  ]
+}
+```
+
+#### Register Patient at CTC (Rural B)
+
+```json
+{
+  "id": "rural_b",
+  "name": "Rural B / CTC Patient Registration",
+  "error_handling": {
+    "error_topic": "log_hiv_rural_B",
+    "log_failure": true,
+    "log_success": true
+  },
+  "kafka_subscription": {
+    "topic_pattern": "HIV_rural_B_Registration_Patient*",
+    "topic_options": {
+      "masking_annotation": "@aether_masking",
+      "masking_levels": [
+        "public",
+        "private"
+      ],
+      "masking_emit_level": "public",
+      "filter_required": false
+    }
+  },
+  "const": {
+    "rapidpro_flow": "https://api.textit.in/api/v2/flow_starts.json",
+    "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
+    "rapidpro_flow_id__contact": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91",
+    "sms_msg": "You have been registered to be contacted on this number."
+  },
+  "stages": [
+    {
+      "name": "urn",
+      "type": "jscall",
+      "id": "urn",
+      "transition": {
+        "input_map": {
+          "base": "$.source.message.contact_number"
+        },
+        "output_map": {
+          "result": "$.result"
+        }
+      }
+    },
+    {
+      "name": "rapidpro",
+      "type": "restcall",
+      "id": "default",
+      "transition": {
+        "input_map": {
+          "url": "$.const.rapidpro_flow",
+          "method": "POST",
+          "headers": {
+            "Authorization": "$.const.rapidpro_auth_header"
+          },
+          "json_body": {
+            "flow": "$.const.rapidpro_flow_id__contact",
+            "extra": {
+              "msg": "$.const.sms_msg",
+              "contactid": "$.source.message.patient_id"
+            },
+            "urns": "$.urn.result"
+          }
+        },
+        "output_map": {
+          "status_code": "$.status_code",
+          "all": "$.reason"
+        }
+      }
+    }
+  ]
+}
+```
+
 #### Sample Start / Unenroll previous reminder (Rural 1)
 
 ```json
