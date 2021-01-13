@@ -126,7 +126,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "log_success": true
   },
   "kafka_subscription": {
-    "topic_pattern": "HIV_rural_A_Registration_HCW*",
+    "topic_pattern": "1Healthcareworkerregistration*",
     "topic_options": {
       "masking_annotation": "@aether_masking",
       "masking_levels": [
@@ -199,7 +199,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "log_success": true
   },
   "kafka_subscription": {
-    "topic_pattern": "HIV_rural_B_Registration_Patient*",
+    "topic_pattern": "2CTCpatientregistration*",
     "topic_options": {
       "masking_annotation": "@aether_masking",
       "masking_levels": [
@@ -273,7 +273,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
 
     },
     "kafka_subscription": {
-        "topic_pattern": "HIV_rural_1_Patient_at_CTC*",
+        "topic_pattern": "3CTCpatientvisit*",
         "topic_options": {
             "masking_annotation": "@aether_masking",
             "masking_levels": ["public", "private"],
@@ -363,7 +363,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
 
     },
     "kafka_subscription": {
-        "topic_pattern": "HIV_rural_3_HVL_result_V1*",
+        "topic_pattern": "4Documentationofviralloadtestresult*",
         "topic_options": {
             "masking_annotation": "@aether_masking",
             "masking_levels": ["public", "private"],
@@ -474,7 +474,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "id": "rural_5",
     "name": "Rural 5 Message Dispatch/ Follow up Enroll",
     "kafka_subscription": {
-        "topic_pattern": "HIVrural_5_Interpretation_testresult_V1*",
+        "topic_pattern": "5HealthcareworkerInterpretationofviralloadtestresult*",
         "topic_options": {
             "masking_annotation": "@aether_masking",
             "masking_levels": ["public", "private"],
