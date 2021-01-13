@@ -140,8 +140,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
   "const": {
     "rapidpro_flow": "https://api.textit.in/api/v2/flow_starts.json",
     "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
-    "rapidpro_flow_id__contact": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91",
-    "sms_msg": "You have been registered as a Healthworker, to be contacted on this number."
+    "rapidpro_flow_id__contact": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91"
   },
   "stages": [
     {
@@ -171,7 +170,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
           "json_body": {
             "flow": "$.const.rapidpro_flow_id__contact",
             "extra": {
-              "msg": "$.const.sms_msg",
+              "msg": "$.source.message.sms_body",
               "contactid": "$.source.message.hcw_id"
             },
             "urns": "$.urn.result"
@@ -213,8 +212,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
   "const": {
     "rapidpro_flow": "https://api.textit.in/api/v2/flow_starts.json",
     "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
-    "rapidpro_flow_id__contact": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91",
-    "sms_msg": "You have been registered to be contacted on this number."
+    "rapidpro_flow_id__contact": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91"
   },
   "stages": [
     {
@@ -244,7 +242,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
           "json_body": {
             "flow": "$.const.rapidpro_flow_id__contact",
             "extra": {
-              "msg": "$.const.sms_msg",
+              "msg": "$.source.message.sms_body",
               "contactid": "$.source.message.patient_id"
             },
             "urns": "$.urn.result"
