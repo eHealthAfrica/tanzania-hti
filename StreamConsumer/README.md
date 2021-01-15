@@ -262,7 +262,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
 
 ```json
 {
-    "id": "rural_1",
+    "id": "rural_1_2",
     "name": "Rural 1 Visit / Sample Enrollment",
     "error_handling": {
         "error_topic": "log_hiv_rural_1",
@@ -352,7 +352,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
 
 ```json
 {
-    "id": "rural_3",
+    "id": "rural_3_2",
     "name": "Rural 3 Message Dispatch",
     "error_handling": {
         "error_topic": "log_hiv_rural_3",
@@ -469,7 +469,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
 
 ```json
 {
-    "id": "rural_5",
+    "id": "rural_5_2",
     "name": "Rural 5 Message Dispatch/ Follow up Enroll",
     "kafka_subscription": {
         "topic_pattern": "5HealthcareworkerInterpretationofviralloadtestresult*",
