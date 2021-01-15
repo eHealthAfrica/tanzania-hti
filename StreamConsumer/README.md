@@ -16,9 +16,9 @@ It's nice to keep constants in th const block. Makes it easier to make changes t
         "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
         "rapidpro_flow_id": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91",
         "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
-        "form_id_patient": "HIV_rural_B",
-        "form_id_hcw": "HIV_rural_A",
-        "form_id_sample_registration": "HIV_rural_1",
+        "form_id_patient": "2_CTC_patient_registration",
+        "form_id_hcw": "1_hcw_registration",
+        "form_id_sample_registration": "3_CTC_visit",
         "aether_auth": {"user": "your aether username", "password": "your aether password"}
     }
 }
@@ -284,8 +284,8 @@ Rapid pro requires a specific format for phone numbers and it's better to change
         "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
         "rapidpro_flow_id__unenroll": "1d0cad75-42c5-4da7-91bd-1327095b73dc",
         "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
-        "form_id_patient": "HIV_rural_B",
-        "form_id_sample_registration": "HIV_rural_1",
+        "form_id_patient": "2_CTC_patient_registration",
+        "form_id_sample_registration": "3_CTC_visit",
         "aether_auth": {"user": "your aether username", "password": "your aether password"}
     },
     "stages" : [
@@ -374,9 +374,9 @@ Rapid pro requires a specific format for phone numbers and it's better to change
         "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
         "rapidpro_flow_id__contact": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91",
         "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
-        "form_id_patient": "HIV_rural_B",
-        "form_id_hcw": "HIV_rural_A",
-        "form_id_sample_registration": "HIV_rural_1",
+        "form_id_patient": "2_CTC_patient_registration",
+        "form_id_hcw": "1_hcw_registration",
+        "form_id_sample_registration": "3_CTC_visit",
         "aether_auth": {"user": "your aether username", "password": "your aether password"}
     },
     "stages" : [
@@ -491,9 +491,9 @@ Rapid pro requires a specific format for phone numbers and it's better to change
         "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
         "rapidpro_flow_id__enroll": "1aa47fe5-32c3-4125-b70c-a02c2f189712",
         "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
-        "form_id_patient": "HIV_rural_B",
-        "form_id_hcw": "HIV_rural_A",
-        "form_id_sample_registration": "HIV_rural_1",
+        "form_id_patient": "2_CTC_patient_registration",
+        "form_id_hcw": "1_hcw_registration",
+        "form_id_sample_registration": "3_CTC_visit",
         "aether_auth": {"user": "your aether username", "password": "your aether password"}
     },
     "stages" : [
