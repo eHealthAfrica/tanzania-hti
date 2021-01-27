@@ -114,6 +114,152 @@ Rapid pro requires a specific format for phone numbers and it's better to change
 
 ## Pipelines
 
+#### Register Healthcare Worker (Rural A)
+
+```json
+{
+  "id": "rural_a",
+  "name": "Rural A / Healthworker Registration",
+  "error_handling": {
+    "error_topic": "log_hiv_rural_A",
+    "log_failure": true,
+    "log_success": true
+  },
+  "kafka_subscription": {
+    "topic_pattern": "HIV_rural_A_Registration_HCW*",
+    "topic_options": {
+      "masking_annotation": "@aether_masking",
+      "masking_levels": [
+        "public",
+        "private"
+      ],
+      "masking_emit_level": "public",
+      "filter_required": false
+    }
+  },
+  "const": {
+    "rapidpro_flow": "https://api.textit.in/api/v2/flow_starts.json",
+    "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
+    "rapidpro_flow_id__contact": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91",
+    "sms_msg": "You have been registered as a Healthworker, to be contacted on this number."
+  },
+  "stages": [
+    {
+      "name": "urn",
+      "type": "jscall",
+      "id": "urn",
+      "transition": {
+        "input_map": {
+          "base": "$.source.message.contact_number"
+        },
+        "output_map": {
+          "result": "$.result"
+        }
+      }
+    },
+    {
+      "name": "rapidpro",
+      "type": "restcall",
+      "id": "default",
+      "transition": {
+        "input_map": {
+          "url": "$.const.rapidpro_flow",
+          "method": "POST",
+          "headers": {
+            "Authorization": "$.const.rapidpro_auth_header"
+          },
+          "json_body": {
+            "flow": "$.const.rapidpro_flow_id__contact",
+            "extra": {
+              "msg": "$.const.sms_msg",
+              "contactid": "$.source.message.hcw_id"
+            },
+            "urns": "$.urn.result"
+          }
+        },
+        "output_map": {
+          "status_code": "$.status_code",
+          "all": "$.reason"
+        }
+      }
+    }
+  ]
+}
+```
+
+#### Register Patient at CTC (Rural B)
+
+```json
+{
+  "id": "rural_b",
+  "name": "Rural B / CTC Patient Registration",
+  "error_handling": {
+    "error_topic": "log_hiv_rural_B",
+    "log_failure": true,
+    "log_success": true
+  },
+  "kafka_subscription": {
+    "topic_pattern": "HIV_rural_B_Registration_Patient*",
+    "topic_options": {
+      "masking_annotation": "@aether_masking",
+      "masking_levels": [
+        "public",
+        "private"
+      ],
+      "masking_emit_level": "public",
+      "filter_required": false
+    }
+  },
+  "const": {
+    "rapidpro_flow": "https://api.textit.in/api/v2/flow_starts.json",
+    "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
+    "rapidpro_flow_id__contact": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91",
+    "sms_msg": "You have been registered to be contacted on this number."
+  },
+  "stages": [
+    {
+      "name": "urn",
+      "type": "jscall",
+      "id": "urn",
+      "transition": {
+        "input_map": {
+          "base": "$.source.message.contact_number"
+        },
+        "output_map": {
+          "result": "$.result"
+        }
+      }
+    },
+    {
+      "name": "rapidpro",
+      "type": "restcall",
+      "id": "default",
+      "transition": {
+        "input_map": {
+          "url": "$.const.rapidpro_flow",
+          "method": "POST",
+          "headers": {
+            "Authorization": "$.const.rapidpro_auth_header"
+          },
+          "json_body": {
+            "flow": "$.const.rapidpro_flow_id__contact",
+            "extra": {
+              "msg": "$.const.sms_msg",
+              "contactid": "$.source.message.patient_id"
+            },
+            "urns": "$.urn.result"
+          }
+        },
+        "output_map": {
+          "status_code": "$.status_code",
+          "all": "$.reason"
+        }
+      }
+    }
+  ]
+}
+```
+
 #### Sample Start / Unenroll previous reminder (Rural 1)
 
 ```json
@@ -438,4 +584,266 @@ Rapid pro requires a specific format for phone numbers and it's better to change
         }
     ]
 }
+```
+
+#### TB / Suspect Registration
+
+```json
+{
+  "id": "tb_1",
+  "name": " TB 1 / Suspect Registration",
+  "error_handling": {
+    "error_topic": "log_tb_1",
+    "log_failure": true,
+    "log_success": true
+  },
+  "kafka_subscription": {
+    "topic_pattern": "TBForm*",
+    "topic_options": {
+      "masking_annotation": "@aether_masking",
+      "masking_levels": [
+        "public",
+        "private"
+      ],
+      "masking_emit_level": "public",
+      "filter_required": false
+    }
+  },
+  "const": {
+    "rapidpro_flow": "https://api.textit.in/api/v2/flow_starts.json",
+    "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
+    "rapidpro_flow_id": "f01df7ef-f0cc-493e-91fa-f9bae1f2c703"
+  },
+  "stages": [
+    {
+      "name": "urn",
+      "type": "jscall",
+      "id": "urn",
+      "transition": {
+        "input_map": {
+          "base": "$.source.message.contact_number"
+        },
+        "output_map": {
+          "result": "$.result"
+        }
+      }
+    },
+    {
+      "name": "rapidpro",
+      "type": "restcall",
+      "id": "default",
+      "transition": {
+        "input_map": {
+          "url": "$.const.rapidpro_flow",
+          "method": "POST",
+          "headers": {
+            "Authorization": "$.const.rapidpro_auth_header"
+          },
+          "json_body": {
+            "flow": "$.const.rapidpro_flow_id",
+            "extra": {
+              "msg": "$.source.message.sms_body",
+              "sms_to_driver": "$.source.message.sms_to_driver"
+            },
+            "urns": "$.urn.result"
+          }
+        },
+        "output_map": {
+          "status_code": "$.status_code",
+          "all": "$.reason"
+        }
+      }
+    }
+  ]
+}
+```
+
+
+#### TB / Health care worker interpretation of TB test result
+
+```json
+{
+  "id": "tb_8",
+  "name": "TB 8 / Health care worker interpretation of TB test result",
+  "error_handling": {
+    "error_topic": "log_tb_8",
+    "log_failure": true,
+    "log_success": true
+  },
+  "kafka_subscription": {
+    "topic_pattern": "TBForm*",
+    "topic_options": {
+      "masking_annotation": "@aether_masking",
+      "masking_levels": [
+        "public",
+        "private"
+      ],
+      "masking_emit_level": "public",
+      "filter_required": false
+    }
+  },
+  "const": {
+    "rapidpro_flow": "https://api.textit.in/api/v2/flow_starts.json",
+    "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
+    "rapidpro_flow_id": "5863c049-529b-4a2b-90a2-efac5fa949d3",
+    "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
+    "form_id_sample_registration": "TB_suspect_registration",
+    "aether_auth": {"user": "your aether username", "password": "your aether password"}
+  },
+  "stages": [{
+      "name": "sample",
+      "type": "restcall",
+      "id": "default",
+      "transition": {
+        "input_map": {
+          "url": "$.const.aether_url",
+          "method": "GET",
+          "basic_auth": "$.const.aether_auth",
+          "query_params": {
+            "ordering": "-modified",
+            "payload___id": "$.const.form_id_sample_registration",
+            "payload__sample_id": "$.source.message.sample_id"
+          }
+        },
+        "output_map": {
+          "status_code": "$.status_code",
+          "contact_number": "$.json.results[0].payload.contact_number"
+        }
+      }
+    },
+    {
+      "name": "urn",
+      "type": "jscall",
+      "id": "urn",
+      "transition": {
+        "input_map": {
+          "base": "$.sample.contact_number"
+        },
+        "output_map": {
+          "result": "$.result"
+        }
+      }
+    },
+    {
+      "name": "rapidpro",
+      "type": "restcall",
+      "id": "default",
+      "transition": {
+        "input_map": {
+          "url": "$.const.rapidpro_flow",
+          "method": "POST",
+          "headers": {
+            "Authorization": "$.const.rapidpro_auth_header"
+          },
+          "json_body": {
+            "flow": "$.const.rapidpro_flow_id",
+            "extra": {
+              "procedure": "$.source.message.procedure",
+              "sms_body_follow_up": "$.source.message.sms_body_follow_up",
+              "sms_body_medical_discharge": "$.source.message.sms_body_medical_discharge"
+            },
+            "urns": "$.urn.result"
+          }
+        },
+        "output_map": {
+          "status_code": "$.status_code",
+          "all": "$.reason"
+        }
+      }
+    }
+  ]
+}
+```
+
+```json
+{
+    "id": "tb_11",
+    "name": "TB 11 / TB patient visit at health facility / Follow up Enroll",
+    "kafka_subscription": {
+        "topic_pattern": "TBForm*",
+        "topic_options": {
+            "masking_annotation": "@aether_masking",
+            "masking_levels": ["public", "private"],
+            "masking_emit_level": "public",
+            "filter_required": false
+        }
+    },
+    "error_handling": {
+        "error_topic": "log_tb_11",
+        "log_failure": true,
+        "log_success": true
+
+    },
+    "const": {
+        "rapidpro_flow": "https://api.textit.in/api/v2/flow_starts.json",
+        "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
+        "rapidpro_flow_id__enroll": "c4368cd9-b92e-4020-bbe8-2a20be4b702c",
+        "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
+        "form_id_sample_registration": "TB_suspect_registration",
+        "aether_auth": {"user": "your aether username", "password": "your aether password"}
+    },
+    "stages" : [
+        {
+            "name": "patient",
+            "type": "restcall",
+            "id": "default",
+            "transition": {
+                "input_map": {
+                    "url": "$.const.aether_url",
+                    "method": "GET",
+                    "basic_auth": "$.const.aether_auth",
+                    "query_params": {
+                        "ordering": "-modified",
+                        "payload___id": "$.const.form_id_sample_registration",
+                        "payload__patient_id": "$.source.message.patient_id"
+                    }
+                },
+                "output_map":{
+                    "status_code": "$.status_code",
+                    "contact_number": "$.json.results[0].payload.contact_number"
+                }
+            }
+        },
+        {
+            "name": "urn",
+            "type": "jscall",
+            "id": "urn",
+            "transition": {
+                "input_map": {
+                    "base": "$.patient.contact_number"
+                },
+                "output_map": {
+                    "result": "$.result"
+                }
+            }
+        },
+        {
+            "name": "rapidpro",
+            "type": "restcall",
+            "id": "default",
+            "transition": {
+                "input_map": {
+                    "url": "$.const.rapidpro_flow",
+                    "method": "POST",
+                    "headers": {"Authorization": "$.const.rapidpro_auth_header"},
+                    "json_body": {
+                        "flow": "$.const.rapidpro_flow_id__enroll",
+                        "extra": {
+                            "hcwid": "$.source.message.hcw_id",
+                            "appointment": "$.source.message.appointment_date",
+                            "patientid": "$.source.message.patient_id",
+                            "msg": "$.source.message.sms_body"
+                        },
+                        "urns": "$.urn.result"
+                    }
+                },
+                "output_map":{
+                    "status_code": "$.status_code",
+                    "all": "$.reason"
+                }
+            }
+        }
+    ]
+}
+
 ```
