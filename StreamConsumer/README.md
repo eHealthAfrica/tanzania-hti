@@ -598,7 +598,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "log_success": true
   },
   "kafka_subscription": {
-    "topic_pattern": "TBForm*",
+    "topic_pattern": "TBForm01*",
     "topic_options": {
       "masking_annotation": "@aether_masking",
       "masking_levels": [
@@ -643,7 +643,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
             "flow": "$.const.rapidpro_flow_id",
             "extra": {
               "msg": "$.source.message.sms_body",
-              "sms_to_driver": "$.source.message.sms_to_driver"
+              "send_sms": "$.source.message.send_sms"
             },
             "urns": "$.urn.result"
           }
@@ -658,6 +658,164 @@ Rapid pro requires a specific format for phone numbers and it's better to change
 }
 ```
 
+#### TB / Documentation of TB test result
+
+```json
+{
+  "id": "tb_5",
+  "name": "TB 5 / Documentation of TB test result",
+  "error_handling": {
+    "error_topic": "log_tb_5",
+    "log_failure": true,
+    "log_success": true
+  },
+  "kafka_subscription": {
+    "topic_pattern": "TBForm5*",
+    "topic_options": {
+      "masking_annotation": "@aether_masking",
+      "masking_levels": [
+        "public",
+        "private"
+      ],
+      "masking_emit_level": "public",
+      "filter_required": false
+    }
+  },
+  "const": {
+    "rapidpro_flow": "https://api.textit.in/api/v2/flow_starts.json",
+    "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
+    "rapidpro_flow_id_patient": "f91ec2fc-23f0-46f4-b7ff-2d982b551aa8",
+    "rapidpro_flow_id_hcw": "45732880-509f-40ca-a9b4-46a6b2e5ac0e",
+    "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
+    "form_id_sample_registration": "TB_suspect_registration",
+    "form_id_hcw": "TB_hcw_registration",
+    "aether_auth": {"user": "your aether username", "password": "your aether password"}
+  },
+  "stages": [{
+      "name": "patient",
+      "type": "restcall",
+      "id": "default",
+      "transition": {
+        "input_map": {
+          "url": "$.const.aether_url",
+          "method": "GET",
+          "basic_auth": "$.const.aether_auth",
+          "query_params": {
+            "ordering": "-modified",
+            "payload___id": "$.const.form_id_sample_registration",
+            "payload__sample_id": "$.source.message.sample_id"
+          }
+        },
+        "output_map": {
+          "status_code": "$.status_code",
+          "contact_number": "$.json.results[0].payload.contact_number"
+        }
+      }
+    },
+    {
+      "name": "hcw",
+      "type": "restcall",
+      "id": "default",
+      "transition": {
+        "input_map": {
+          "url": "$.const.aether_url",
+          "method": "GET",
+          "basic_auth": "$.const.aether_auth",
+          "query_params": {
+            "ordering": "-modified",
+            "payload___id": "$.const.form_id_hcw",
+            "payload__hcw_id": "$.source.message.hcw_id"
+          }
+        },
+        "output_map": {
+          "status_code": "$.status_code",
+          "hcw_contact_number": "$.json.results[0].payload.hcw_contact_number"
+        }
+      }
+    },
+    {
+      "name": "urn_patient",
+      "type": "jscall",
+      "id": "urn",
+      "transition": {
+        "input_map": {
+          "base": "$.patient.contact_number"
+        },
+        "output_map": {
+          "result": "$.result"
+        }
+      }
+    },
+    {
+      "name": "rapidpro_patient",
+      "type": "restcall",
+      "id": "default",
+      "transition": {
+        "input_map": {
+          "url": "$.const.rapidpro_flow",
+          "method": "POST",
+          "headers": {
+            "Authorization": "$.const.rapidpro_auth_header"
+          },
+          "json_body": {
+            "flow": "$.const.rapidpro_flow_id_patient",
+            "extra": {
+              "test_type": "$.source.message.test_type",
+              "sms_body_patient": "$.source.message.sms_body_patient"
+            },
+            "urns": "$.urn_patient.result"
+          }
+        },
+        "output_map": {
+          "status_code": "$.status_code",
+          "all": "$.reason"
+        }
+      }
+    },
+    {
+      "name": "urn_hcw",
+      "type": "jscall",
+      "id": "urn",
+      "transition": {
+        "input_map": {
+          "base": "$.hcw.hcw_contact_number"
+        },
+        "output_map": {
+          "result": "$.result"
+        }
+      }
+    },
+    {
+      "name": "rapidpro_hcw",
+      "type": "restcall",
+      "id": "default",
+      "transition": {
+        "input_map": {
+          "url": "$.const.rapidpro_flow",
+          "method": "POST",
+          "headers": {
+            "Authorization": "$.const.rapidpro_auth_header"
+          },
+          "json_body": {
+            "flow": "$.const.rapidpro_flow_id_hcw",
+            "extra": {
+              "test_type": "$.source.message.test_type",
+              "sms_body_AFB_result": "$.source.message.sms_body_AFB_result",
+              "sms_body_GeneXpert_result": "$.source.message.sms_body_GeneXpert_result"
+            },
+            "urns": "$.urn_hcw.result"
+          }
+        },
+        "output_map": {
+          "status_code": "$.status_code",
+          "all": "$.reason"
+        }
+      }
+    }
+  ]
+}
+
+```
 
 #### TB / Health care worker interpretation of TB test result
 
@@ -671,7 +829,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "log_success": true
   },
   "kafka_subscription": {
-    "topic_pattern": "TBForm*",
+    "topic_pattern": "TBForm8*",
     "topic_options": {
       "masking_annotation": "@aether_masking",
       "masking_levels": [
@@ -691,7 +849,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "aether_auth": {"user": "your aether username", "password": "your aether password"}
   },
   "stages": [{
-      "name": "sample",
+      "name": "patient",
       "type": "restcall",
       "id": "default",
       "transition": {
@@ -717,7 +875,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
       "id": "urn",
       "transition": {
         "input_map": {
-          "base": "$.sample.contact_number"
+          "base": "$.patient.contact_number"
         },
         "output_map": {
           "result": "$.result"
@@ -755,12 +913,14 @@ Rapid pro requires a specific format for phone numbers and it's better to change
 }
 ```
 
+#### TB / Patient visit at health facility
+
 ```json
 {
     "id": "tb_11",
     "name": "TB 11 / TB patient visit at health facility / Follow up Enroll",
     "kafka_subscription": {
-        "topic_pattern": "TBForm*",
+        "topic_pattern": "TBForm11*",
         "topic_options": {
             "masking_annotation": "@aether_masking",
             "masking_levels": ["public", "private"],
@@ -776,7 +936,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     },
     "const": {
         "rapidpro_flow": "https://api.textit.in/api/v2/flow_starts.json",
-        "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
+        "rapidpro_auth_header": "Token d2f6f2c915c737b91ee0c1e068b08d284650c430",
         "rapidpro_flow_id__enroll": "c4368cd9-b92e-4020-bbe8-2a20be4b702c",
         "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
         "form_id_sample_registration": "TB_suspect_registration",
@@ -845,5 +1005,4 @@ Rapid pro requires a specific format for phone numbers and it's better to change
         }
     ]
 }
-
 ```
