@@ -936,7 +936,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     },
     "const": {
         "rapidpro_flow": "https://api.textit.in/api/v2/flow_starts.json",
-        "rapidpro_auth_header": "Token d2f6f2c915c737b91ee0c1e068b08d284650c430",
+        "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
         "rapidpro_flow_id__enroll": "c4368cd9-b92e-4020-bbe8-2a20be4b702c",
         "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
         "form_id_sample_registration": "TB_suspect_registration",
