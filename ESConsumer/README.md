@@ -57,7 +57,7 @@ Forms:
       "private"
     ]
   },
-  "topic_pattern": "HIV_rural_A_*",
+  "topic_pattern": "1Healthcareworkerregistration*",
   "visualizations": []
 }
 ```
@@ -85,7 +85,7 @@ Forms:
       "private"
     ]
   },
-  "topic_pattern": "HIV_rural_B_*",
+  "topic_pattern": "2CTCpatientregistration*",
   "visualizations": []
 }
 ```
@@ -114,7 +114,7 @@ Forms:
       "private"
     ]
   },
-  "topic_pattern": "HIV_rural_1_*",
+  "topic_pattern": "3CTCpatientvisit*",
   "visualizations": []
 }
 ```
@@ -142,7 +142,7 @@ Forms:
       "private"
     ]
   },
-  "topic_pattern": "HIV_rural_3_*",
+  "topic_pattern": "4Documentationofviralloadtestresult*",
   "visualizations": []
 }
 ```
@@ -170,7 +170,7 @@ Forms:
       "private"
     ]
   },
-  "topic_pattern": "HIVrural_5_*",
+  "topic_pattern": "5HealthcareworkerInterpretationofviralloadtestresult*",
   "visualizations": []
 }
 ```
