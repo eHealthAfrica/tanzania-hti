@@ -16,9 +16,9 @@ It's nice to keep constants in th const block. Makes it easier to make changes t
         "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
         "rapidpro_flow_id": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91",
         "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
-        "form_id_patient": "HIV_rural_B",
-        "form_id_hcw": "HIV_rural_A",
-        "form_id_sample_registration": "HIV_rural_1",
+        "form_id_patient": "2_CTC_patient_registration",
+        "form_id_hcw": "1_hcw_registration",
+        "form_id_sample_registration": "3_CTC_visit",
         "aether_auth": {"user": "your aether username", "password": "your aether password"}
     }
 }
@@ -126,7 +126,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "log_success": true
   },
   "kafka_subscription": {
-    "topic_pattern": "HIV_rural_A_Registration_HCW*",
+    "topic_pattern": "1Healthcareworkerregistration*",
     "topic_options": {
       "masking_annotation": "@aether_masking",
       "masking_levels": [
@@ -140,8 +140,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
   "const": {
     "rapidpro_flow": "https://api.textit.in/api/v2/flow_starts.json",
     "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
-    "rapidpro_flow_id__contact": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91",
-    "sms_msg": "You have been registered as a Healthworker, to be contacted on this number."
+    "rapidpro_flow_id__contact": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91"
   },
   "stages": [
     {
@@ -171,7 +170,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
           "json_body": {
             "flow": "$.const.rapidpro_flow_id__contact",
             "extra": {
-              "msg": "$.const.sms_msg",
+              "msg": "$.source.message.sms_body",
               "contactid": "$.source.message.hcw_id"
             },
             "urns": "$.urn.result"
@@ -199,7 +198,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "log_success": true
   },
   "kafka_subscription": {
-    "topic_pattern": "HIV_rural_B_Registration_Patient*",
+    "topic_pattern": "2CTCpatientregistration*",
     "topic_options": {
       "masking_annotation": "@aether_masking",
       "masking_levels": [
@@ -213,8 +212,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
   "const": {
     "rapidpro_flow": "https://api.textit.in/api/v2/flow_starts.json",
     "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
-    "rapidpro_flow_id__contact": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91",
-    "sms_msg": "You have been registered to be contacted on this number."
+    "rapidpro_flow_id__contact": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91"
   },
   "stages": [
     {
@@ -244,7 +242,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
           "json_body": {
             "flow": "$.const.rapidpro_flow_id__contact",
             "extra": {
-              "msg": "$.const.sms_msg",
+              "msg": "$.source.message.sms_body",
               "contactid": "$.source.message.patient_id"
             },
             "urns": "$.urn.result"
@@ -264,7 +262,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
 
 ```json
 {
-    "id": "rural_1",
+    "id": "rural_1_2",
     "name": "Rural 1 Visit / Sample Enrollment",
     "error_handling": {
         "error_topic": "log_hiv_rural_1",
@@ -273,7 +271,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
 
     },
     "kafka_subscription": {
-        "topic_pattern": "HIV_rural_1_Patient_at_CTC*",
+        "topic_pattern": "3CTCpatientvisit*",
         "topic_options": {
             "masking_annotation": "@aether_masking",
             "masking_levels": ["public", "private"],
@@ -286,8 +284,8 @@ Rapid pro requires a specific format for phone numbers and it's better to change
         "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
         "rapidpro_flow_id__unenroll": "1d0cad75-42c5-4da7-91bd-1327095b73dc",
         "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
-        "form_id_patient": "HIV_rural_B",
-        "form_id_sample_registration": "HIV_rural_1",
+        "form_id_patient": "2_CTC_patient_registration",
+        "form_id_sample_registration": "3_CTC_visit",
         "aether_auth": {"user": "your aether username", "password": "your aether password"}
     },
     "stages" : [
@@ -354,7 +352,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
 
 ```json
 {
-    "id": "rural_3",
+    "id": "rural_3_2",
     "name": "Rural 3 Message Dispatch",
     "error_handling": {
         "error_topic": "log_hiv_rural_3",
@@ -363,7 +361,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
 
     },
     "kafka_subscription": {
-        "topic_pattern": "HIV_rural_3_HVL_result_V1*",
+        "topic_pattern": "4Documentationofviralloadtestresult*",
         "topic_options": {
             "masking_annotation": "@aether_masking",
             "masking_levels": ["public", "private"],
@@ -376,9 +374,9 @@ Rapid pro requires a specific format for phone numbers and it's better to change
         "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
         "rapidpro_flow_id__contact": "4f9a2cbb-2eee-435d-8dca-9505d9ab7b91",
         "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
-        "form_id_patient": "HIV_rural_B",
-        "form_id_hcw": "HIV_rural_A",
-        "form_id_sample_registration": "HIV_rural_1",
+        "form_id_patient": "2_CTC_patient_registration",
+        "form_id_hcw": "1_hcw_registration",
+        "form_id_sample_registration": "3_CTC_visit",
         "aether_auth": {"user": "your aether username", "password": "your aether password"}
     },
     "stages" : [
@@ -471,10 +469,10 @@ Rapid pro requires a specific format for phone numbers and it's better to change
 
 ```json
 {
-    "id": "rural_5",
+    "id": "rural_5_2",
     "name": "Rural 5 Message Dispatch/ Follow up Enroll",
     "kafka_subscription": {
-        "topic_pattern": "HIVrural_5_Interpretation_testresult_V1*",
+        "topic_pattern": "5HealthcareworkerInterpretationofviralloadtestresult*",
         "topic_options": {
             "masking_annotation": "@aether_masking",
             "masking_levels": ["public", "private"],
@@ -493,9 +491,9 @@ Rapid pro requires a specific format for phone numbers and it's better to change
         "rapidpro_auth_header": "Token API_KEY_GOES_HERE",
         "rapidpro_flow_id__enroll": "1aa47fe5-32c3-4125-b70c-a02c2f189712",
         "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
-        "form_id_patient": "HIV_rural_B",
-        "form_id_hcw": "HIV_rural_A",
-        "form_id_sample_registration": "HIV_rural_1",
+        "form_id_patient": "2_CTC_patient_registration",
+        "form_id_hcw": "1_hcw_registration",
+        "form_id_sample_registration": "3_CTC_visit",
         "aether_auth": {"user": "your aether username", "password": "your aether password"}
     },
     "stages" : [
