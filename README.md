@@ -43,6 +43,18 @@ All username and passwords are available in the `HTI Credentials` note in the Sh
 - Get a specific job: `https://eha-data.org/htidev/stream-consumer/job/get?id=job_id`
 - Get the list of jobs: `https://eha-data.org/htidev/stream-consumer/job/list`
 - Get the list of topics (ordered by last updated): `https://eha-data.org/htidev/kernel/schemadecorators.json?fields=modified%2Cname%2Cid%2Ctopic&ordering=-modified`
+- Add/update a pipeline: `http --json POST https://eha-data.org/htidev/stream-consumer/pipeline/add -a username:password < ./StreamConsumer/pipeline_file.json`
+- Add job to consumer: `http --json POST https://eha-data.org/htidev/stream-consumer/job/add -a username:password < ./StreamConsumer/job_file.json`
+Example of job:
+```
+{
+  "id": "rural_a_1",
+  "name": "HIV Rural A",
+  "pipelines": [
+    "rural_a"
+  ]
+}
+```
 - To see if a flow was started in RapidPro (textit), go to `https://textit.com/flowstart/`
 - Kakfa topics can be found in the `ehealth-africa-prod1` cluster in [Confluent](https://confluent.cloud/)  
 
