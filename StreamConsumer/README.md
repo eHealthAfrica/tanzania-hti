@@ -5,7 +5,7 @@ https://github.com/ehealthafrica/aether-stream-consumer
 If you know the concepts well, you can skip to the pipelines at the bottom.
 
 
-### Contants
+### Constants
 
 It's nice to keep constants in the const block. Makes it easier to make changes to all pipelines by pasting in the new consts when something changes / you migrate.
 
@@ -54,7 +54,7 @@ Most of these flows require data other than what's available in the current mess
 }
 ```
 
-You can reuse the same defaut restcall and just change the transition as below.
+You can reuse the same default restcall and just change the transition as below.
 
 #### lookup patient contact via patient_id
 

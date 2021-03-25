@@ -56,7 +56,11 @@ Example of job:
 }
 ```
 - To see if a flow was started in RapidPro (textit), go to `https://textit.com/flowstart/`
-- Kakfa topics can be found in the `ehealth-africa-prod1` cluster in [Confluent](https://confluent.cloud/)  
+- Kakfa topics can be found in the `ehealth-africa-prod1` cluster in [Confluent](https://confluent.cloud/)
+
+### TODO
+
+- You can test the entire flow based on this [test file](https://docs.google.com/spreadsheets/d/1YmnVkh9YuN-7flEaBvW4VXmlpUFp-zdpPYTbj8E5ncQ/edit#gid=0). 
 
 ### TODO
 
