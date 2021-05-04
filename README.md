@@ -5,7 +5,7 @@ In order to enable the THTI project, we're assembled a solution that allows comp
 ### HIV Flowchart
 ![HIV Flowchart](/doc/hiv_flowchart.png)
 
-Nodes 1, 3, and 5 each represent a submitted ODK form. (Update: two additional nodes or ODK forms were added before node 1). XLS forms can be found here: [HIV XLS Forms](https://drive.google.com/drive/folders/15f5jSZCjmInNgX9uZVUeFGIuITDUS__b?usp=sharing)
+Nodes 1, 3, and 5 each represent a submitted ODK form. (Update: two additional nodes or ODK forms were added before node 1). XLS forms can be found here: [HIV XLS Forms](https://drive.google.com/drive/folders/1JH3GJyF3hMjdzFYgiIt6DzwrQ8pl7zdH)
 
 ### TB Flowchart
 ![TB Flowchart](/doc/tb_flowchart.png)
@@ -60,7 +60,7 @@ Example of job:
 
 ### TODO
 
-- You can test the entire flow based on this [test file](https://docs.google.com/spreadsheets/d/1YmnVkh9YuN-7flEaBvW4VXmlpUFp-zdpPYTbj8E5ncQ/edit#gid=0). 
+- You can test the entire flow based on this [test file](https://docs.google.com/spreadsheets/d/1YmnVkh9YuN-7flEaBvW4VXmlpUFp-zdpPYTbj8E5ncQ/edit#gid=0).
 
 ### TODO
 
