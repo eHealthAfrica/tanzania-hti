@@ -40,6 +40,8 @@ All username and passwords are available in the `HTI Credentials` note in the Sh
 - Get the list of form submissions (ordered by submission date): `https://eha-data.org/htidev/kernel/entities.json?ordering=-modified`
 - Get the list of pipelines: `https://eha-data.org/htidev/stream-consumer/pipeline/list`
 - Get a specific pipeline: `https://eha-data.org/htidev/stream-consumer/pipeline/get?id=pipeline_id`
+- Get the list of subscriptions: `https://eha-data.org/htidev/es-consumer/subscription/list`
+- Get a specific subscription: `https://eha-data.org/htidev/es-consumer/subscription/get?id=subscription_id`
 - Get a specific job: `https://eha-data.org/htidev/stream-consumer/job/get?id=job_id`
 - Get the list of jobs: `https://eha-data.org/htidev/stream-consumer/job/list`
 - Get the list of topics (ordered by last updated): `https://eha-data.org/htidev/kernel/schemadecorators.json?fields=modified%2Cname%2Cid%2Ctopic&ordering=-modified`
@@ -58,11 +60,6 @@ Example of job:
 - To see if a flow was started in RapidPro (textit), go to `https://textit.com/flowstart/`
 - Kakfa topics can be found in the `ehealth-africa-prod1` cluster in [Confluent](https://confluent.cloud/)
 
-### TODO
+### Test
 
 - You can test the entire flow based on this [test file](https://docs.google.com/spreadsheets/d/1YmnVkh9YuN-7flEaBvW4VXmlpUFp-zdpPYTbj8E5ncQ/edit#gid=0).
-
-### TODO
-
-- Update the HIV Diagram
-- Add a diagram for TB
