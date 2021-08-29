@@ -126,7 +126,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "log_success": true
   },
   "kafka_subscription": {
-    "topic_pattern": "1Healthcareworkerregistration*",
+    "topic_pattern": "0_Health_care_worker_registration*",
     "topic_options": {
       "filter_required": false,
       "masking_annotation": "@aether_masking",
@@ -198,7 +198,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "log_success": true
   },
   "kafka_subscription": {
-    "topic_pattern": "2CTCpatientregistration*",
+    "topic_pattern": "HIV_1_patient_registration*",
     "topic_options": {
       "filter_required": false,
       "masking_annotation": "@aether_masking",
@@ -270,7 +270,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "log_success": true
   },
   "kafka_subscription": {
-    "topic_pattern": "3CTCpatientvisit*",
+    "topic_pattern": "HIV_2_patient_visit*",
     "topic_options": {
       "filter_required": false,
       "masking_annotation": "@aether_masking",
@@ -286,7 +286,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "rapidpro_auth_header": "Token 5503ade899c1b6b652142cbb52ed9d81826e571f",
     "rapidpro_flow_id__unenroll": "73d62185-e89c-4011-8b59-abc49dd21d4b",
     "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
-    "form_id_patient": "2_CTC_patient_registration",
+    "form_id_patient": "HIV_1_patient_registration",
     "form_id_sample_registration": "3_CTC_visit",
     "aether_auth": {
       "password": "acaengeeCiephashe6ib",
@@ -367,7 +367,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "log_success": true
   },
   "kafka_subscription": {
-    "topic_pattern": "4Documentationofviralloadtestresult*"
+    "topic_pattern": "HIV_3_documentation_HVL*"
     "topic_options": {
       "filter_required": false,
       "masking_annotation": "@aether_masking",
@@ -384,9 +384,8 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "rapidpro_auth_header": "Token 5503ade899c1b6b652142cbb52ed9d81826e571f",
     "rapidpro_flow_id__contact": "f7d1acbf-cbbb-48a5-8e9e-148c75504d58",
     "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
-    "form_id_hcw": "1_hcw_registration",
-    "form_id_patient": "2_CTC_patient_registration",
-    "form_id_sample_registration": "3_CTC_visit",
+    "form_id_hcw": "0_hcw_registration",
+    "form_id_sample_registration": "HIV_2_patient_visit",
     "aether_auth": {
       "password": "acaengeeCiephashe6ib",
       "user": "user"
@@ -492,7 +491,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "log_success": true
   },
   "kafka_subscription": {
-    "topic_pattern": "5HealthcareworkerInterpretationofviralloadtestresult*",
+    "topic_pattern": "HIV_4_interpretation_of_HVL_test_result*",
     "topic_options": {
       "filter_required": false,
       "masking_annotation": "@aether_masking",
@@ -508,9 +507,8 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "rapidpro_auth_header": "Token 5503ade899c1b6b652142cbb52ed9d81826e571f",
     "rapidpro_flow_id__enroll": "191bd699-9e2a-4730-9423-070943b280c5",
     "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
-    "form_id_hcw": "1_hcw_registration",
-    "form_id_patient": "2_CTC_patient_registration",
-    "form_id_sample_registration": "3_CTC_visit",
+    "form_id_patient": "HIV_1_patient_registration",
+    "form_id_sample_registration": "HIV_2_patient_visit",
     "aether_auth": {
       "password": "acaengeeCiephashe6ib",
       "user": "user"
@@ -745,7 +743,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "rapidpro_flow_id_hcw": "225c78d4-dd83-487a-8b5f-2116bd7db910",
     "rapidpro_flow_id_patient": "f4859f0d-6f91-4dc9-b002-15e3a67fb6d1",
     "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
-    "form_id_hcw": "1_hcw_registration",
+    "form_id_hcw": "0_hcw_registration",
     "form_id_sample_registration": "TB_1_suspect_registration",
     "aether_auth": {"password": "acaengeeCiephashe6ib","user": "user"}
   },
