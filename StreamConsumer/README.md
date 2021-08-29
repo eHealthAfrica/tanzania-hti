@@ -289,8 +289,8 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "form_id_patient": "HIV_1_patient_registration",
     "form_id_sample_registration": "3_CTC_visit",
     "aether_auth": {
-      "password": "acaengeeCiephashe6ib",
-      "user": "user"
+      "password": "PASSWORD_HERE",
+      "user": "USERNAME_HERE"
     }
   },
   "stages": [
@@ -387,8 +387,8 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "form_id_hcw": "0_hcw_registration",
     "form_id_sample_registration": "HIV_2_patient_visit",
     "aether_auth": {
-      "password": "acaengeeCiephashe6ib",
-      "user": "user"
+      "password": "PASSWORD_HERE",
+      "user": "USERNAME_HERE"
     }
   },
   "stages": [
@@ -510,8 +510,8 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "form_id_patient": "HIV_1_patient_registration",
     "form_id_sample_registration": "HIV_2_patient_visit",
     "aether_auth": {
-      "password": "acaengeeCiephashe6ib",
-      "user": "user"
+      "password": "PASSWORD_HERE",
+      "user": "USERNAME_HERE"
     }
   },
   "stages": [
@@ -745,7 +745,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
     "form_id_hcw": "0_hcw_registration",
     "form_id_sample_registration": "TB_1_suspect_registration",
-    "aether_auth": {"password": "acaengeeCiephashe6ib","user": "user"}
+    "aether_auth": {"password": "PASSWORD_HERE","user": "USERNAME_HERE"}
   },
   "stages": [
     {
@@ -904,7 +904,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "rapidpro_flow_id": "49dac79e-a102-4dd1-9776-a2fd1ce8d108",
     "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
     "form_id_sample_registration": "TB_1_suspect_registration",
-    "aether_auth": { "password": "acaengeeCiephashe6ib", "user": "user" }
+    "aether_auth": { "password": "PASSWORD_HERE", "user": "USERNAME_HERE" }
   },
   "stages": [
     {
@@ -1001,7 +1001,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
     "rapidpro_flow_id__enroll": "9a42198d-702c-4ab6-8d5c-30c0c84e741c",
     "aether_url": "https://eha-data.org/htidev/kernel/entities.json",
     "form_id_sample_registration": "TB_1_suspect_registration",
-    "aether_auth": { "password": "acaengeeCiephashe6ib", "user": "user" }
+    "aether_auth": { "password": "PASSWORD_HERE", "user": "USERNAME_HERE" }
   },
   "stages": [
     {
