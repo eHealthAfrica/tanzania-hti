@@ -739,7 +739,7 @@ Rapid pro requires a specific format for phone numbers and it's better to change
 }
 ```
 
-#### TB / Driver Notification
+#### TB / Sample Transportation
 // https://eha-data.org/htidev/stream-consumer/pipeline/get?id=tb_1b
 
 ```json
@@ -1179,5 +1179,138 @@ Rapid pro requires a specific format for phone numbers and it's better to change
       }
     }
   ]
+}
+```
+
+## Jobs
+
+
+#### Register Healthcare Worker (Rural A)
+*https://eha-data.org/htidev/stream-consumer/job/get?id=rural_a_1*
+
+```json
+{
+    "id": "rural_a_1",
+    "name": "HIV Rural A",
+    "pipelines": [
+        "rural_a"
+    ]
+}
+```
+
+#### Register Patient at CTC (Rural B)
+*https://eha-data.org/htidev/stream-consumer/job/get?id=rural_b_1*
+
+```json
+{
+    "id": "rural_b_1",
+    "name": "HIV Rural B",
+    "pipelines": [
+        "rural_b"
+    ]
+}
+```
+
+#### Sample Start / Unenroll previous reminder (Rural 1)
+*https://eha-data.org/htidev/stream-consumer/job/get?id=rural_1_3*
+
+```json
+{
+    "id": "rural_1_3",
+    "name": "HIV Rural 1",
+    "pipelines": [
+        "rural_1_3"
+    ]
+}
+```
+
+#### Sample Result Registration (Rural 3)
+*https://eha-data.org/htidev/stream-consumer/job/get?id=rural_3_3*
+
+```json
+{
+    "id": "rural_3_3",
+    "name": "HIV Rural 3",
+    "pipelines": [
+        "rural_3_3"
+    ]
+}
+```
+
+#### Enroll Followup (Rural 5)
+*https://eha-data.org/htidev/stream-consumer/job/get?id=rural_5_3*
+
+```json
+{
+    "id": "rural_5_3",
+    "name": "HIV Rural 5",
+    "pipelines": [
+        "rural_5_3"
+    ]
+}
+```
+
+#### TB / Suspect Registration
+*https://eha-data.org/htidev/stream-consumer/job/get?id=tb_1_1*
+
+```json
+{
+    "id": "tb_1_1",
+    "name": "TB 1",
+    "pipelines": [
+        "tb_1"
+    ]
+}
+```
+
+#### TB / Sample Transportation
+*https://eha-data.org/htidev/stream-consumer/job/get?id=tb_1b*
+
+```json
+{
+    "id": "tb_1b",
+    "name": "TB 1B",
+    "pipelines": [
+        "tb_1b"
+    ]
+}
+```
+
+#### TB / Documentation of TB test result
+*https://eha-data.org/htidev/stream-consumer/job/get?id=tb_5_1*
+
+```json
+{
+    "id": "tb_5_1",
+    "name": "TB 5",
+    "pipelines": [
+        "tb_5"
+    ]
+}
+```
+
+#### TB / Health care worker interpretation of TB test result
+*https://eha-data.org/htidev/stream-consumer/job/get?id=tb_8_1*
+
+```json
+{
+    "id": "tb_8_1",
+    "name": "TB 8",
+    "pipelines": [
+        "tb_8"
+    ]
+}
+```
+
+#### TB / Patient visit at health facility
+*https://eha-data.org/htidev/stream-consumer/job/get?id=tb_11_1*
+
+```json
+{
+    "id": "tb_11_1",
+    "name": "TB 11",
+    "pipelines": [
+        "tb_11"
+    ]
 }
 ```
